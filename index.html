@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nexora — Landing Page Template</title>
+  <link rel="icon" href="https://png.pngtree.com/png-vector/20190226/ourmid/pngtree-vector-portfolio-icon-png-image_705750.jpg" type="image/png">
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#111a33;
+      --muted:#a9b2d6;
+      --text:#eef2ff;
+      --brand:#7c3aed;
+      --brand2:#22c55e;
+      --stroke:rgba(255,255,255,.08);
+      --shadow: 0 20px 80px rgba(0,0,0,.45);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% 0%, rgba(124,58,237,.35), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(34,197,94,.25), transparent 55%),
+        radial-gradient(900px 700px at 50% 100%, rgba(59,130,246,.18), transparent 55%),
+        var(--bg);
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1100px; margin:0 auto; padding:0 18px}
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,16,32,.55);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:12px;
+      background: linear-gradient(135deg, var(--brand), #3b82f6, var(--brand2));
+      box-shadow: 0 12px 40px rgba(124,58,237,.35);
+    }
+    .links{display:flex; gap:14px; align-items:center}
+    .links a{
+      padding:10px 10px; border-radius:12px;
+      color: rgba(238,242,255,.85);
+    }
+    .links a:hover{background: rgba(255,255,255,.06)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px; padding:12px 14px;
+      border-radius:14px; border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      cursor:pointer; transition:.2s transform, .2s background;
+      font-weight:650;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.1)}
+    .btn.primary{
+      border-color: rgba(124,58,237,.55);
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(59,130,246,.85));
+      box-shadow: 0 18px 60px rgba(124,58,237,.35);
+    }
+    .btn.primary:hover{filter:brightness(1.06)}
+    .btn.ghost{background:transparent}
+    .menu{
+      display:none;
+      border:1px solid var(--stroke);
+      border-radius:14px;
+      padding:10px 12px;
+      background: rgba(255,255,255,.06);
+    }
+
+    /* Hero */
+    .hero{padding:64px 0 28px}
+    .grid-hero{
+      display:grid; grid-template-columns: 1.1fr .9fr; gap:22px; align-items:center;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      color: rgba(238,242,255,.88);
+      font-size:13px;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--brand2);
+      box-shadow: 0 0 0 6px rgba(34,197,94,.14);
+    }
+    h1{
+      margin:16px 0 10px;
+      font-size: clamp(34px, 4vw, 52px);
+      line-height:1.05;
+      letter-spacing:-.7px;
+    }
+    .sub{
+      color: var(--muted);
+      font-size: 16px;
+      line-height:1.6;
+      max-width: 52ch;
+      margin:0 0 18px;
+    }
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+    .trust{
+      margin-top:16px;
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      color: rgba(238,242,255,.75);
+      font-size:13px;
+    }
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+    }
+
+    .mock{
+      position:relative;
+      border-radius: var(--radius);
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      min-height: 360px;
+    }
+    .mock::before{
+      content:"";
+      position:absolute; inset:-80px;
+      background: radial-gradient(circle at 30% 20%, rgba(124,58,237,.35), transparent 50%),
+                  radial-gradient(circle at 70% 35%, rgba(34,197,94,.22), transparent 55%),
+                  radial-gradient(circle at 50% 70%, rgba(59,130,246,.18), transparent 60%);
+      filter: blur(0px);
+    }
+    .mock-inner{
+      position:relative;
+      padding:18px;
+    }
+    .windowbar{
+      display:flex; gap:8px; align-items:center; margin-bottom:14px;
+    }
+    .w{
+      width:11px; height:11px; border-radius:999px; background: rgba(255,255,255,.14);
+    }
+    .w.red{background:#ef4444}
+    .w.yellow{background:#f59e0b}
+    .w.green{background:#22c55e}
+    .preview{
+      border-radius: 14px;
+      border:1px solid var(--stroke);
+      background: rgba(11,16,32,.35);
+      overflow:hidden;
+    }
+    .preview-top{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 12px;
+      border-bottom:1px solid var(--stroke);
+    }
+    .preview-top strong{font-size:13px}
+    .badge{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(34,197,94,.35);
+      background: rgba(34,197,94,.12);
+      color: rgba(220,252,231,.95);
+    }
+    .preview-body{
+      padding:14px 12px;
+      display:grid;
+      gap:10px;
+    }
+    .line{height:10px; border-radius:999px; background: rgba(255,255,255,.08)}
+    .line.w60{width:60%}
+    .line.w85{width:85%}
+    .line.w40{width:40%}
+    .cards{
+      margin-top:10px;
+      display:grid; grid-template-columns: repeat(2,1fr); gap:10px;
+    }
+    .mini{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius:14px;
+      padding:12px;
+    }
+    .mini b{font-size:13px}
+    .mini p{margin:8px 0 0; color: var(--muted); font-size:12px; line-height:1.4}
+
+    /* Sections */
+    section{padding:52px 0}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size: clamp(22px, 3vw, 30px);
+      letter-spacing:-.4px;
+    }
+    .section-title p{
+      margin:0; color: var(--muted); max-width: 60ch; line-height:1.6;
+    }
+    .grid3{
+      display:grid; grid-template-columns: repeat(3,1fr); gap:14px;
+    }
+    .card{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.2);
+    }
+    .icon{
+      width:40px; height:40px; border-radius:14px;
+      background: linear-gradient(135deg, rgba(124,58,237,.9), rgba(59,130,246,.7));
+      display:grid; place-items:center;
+      margin-bottom:10px;
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .card h3{margin:0 0 8px; font-size:16px}
+    .card p{margin:0; color: var(--muted); line-height:1.6; font-size:14px}
+
+    /* Pricing */
+    .pricing{
+      display:grid; grid-template-columns: repeat(3,1fr); gap:14px;
+      align-items:stretch;
+    }
+    .price{
+      position:relative;
+    }
+    .price .tag{
+      position:absolute; top:14px; right:14px;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(124,58,237,.35);
+      background: rgba(124,58,237,.12);
+      color: rgba(237,233,254,.95);
+    }
+    .money{
+      font-size:34px; font-weight:850; letter-spacing:-.6px;
+      margin:6px 0 10px;
+    }
+    ul{margin:0; padding:0; list-style:none}
+    li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:8px 0;
+      color: rgba(238,242,255,.88);
+      border-top: 1px dashed rgba(255,255,255,.08);
+      font-size:14px;
+    }
+    li:first-child{border-top:none}
+    .check{
+      width:18px; height:18px; border-radius:6px;
+      background: rgba(34,197,94,.18);
+      border:1px solid rgba(34,197,94,.35);
+      display:grid; place-items:center; flex:0 0 auto;
+      margin-top:1px;
+    }
+
+    /* Form */
+    .contact{
+      display:grid; grid-template-columns: 1.2fr .8fr; gap:14px;
+      align-items:stretch;
+    }
+    form{
+      display:grid; gap:12px;
+    }
+    .field{
+      display:grid; gap:7px;
+    }
+    label{font-size:13px; color: rgba(238,242,255,.85)}
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      outline:none;
+      font-size:14px;
+    }
+    textarea{min-height: 120px; resize: vertical}
+    input:focus, textarea:focus{
+      border-color: rgba(124,58,237,.55);
+      box-shadow: 0 0 0 4px rgba(124,58,237,.14);
+    }
+    .note{
+      color: var(--muted); font-size:13px; line-height:1.6;
+    }
+
+    /* FAQ */
+    .faq{
+      display:grid; grid-template-columns: 1fr 1fr; gap:14px;
+    }
+    details{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding:14px 14px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight:700;
+    }
+    details p{margin:10px 0 0; color: var(--muted); line-height:1.6}
+
+    /* Footer */
+    footer{
+      border-top:1px solid var(--stroke);
+      padding:20px 0 28px;
+      color: rgba(238,242,255,.72);
+      font-size:13px;
+    }
+    .foot{
+      display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+    }
+
+    /* Animations */
+    .reveal{
+      opacity:0;
+      transform: translateY(14px);
+      transition: .7s ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .grid-hero{grid-template-columns:1fr; }
+      .mock{min-height: 320px}
+      .grid3{grid-template-columns:1fr}
+      .pricing{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+      .faq{grid-template-columns:1fr}
+      .links{display:none}
+      .menu{display:inline-flex}
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Nexora</span>
+      </a>
+
+      <nav class="links" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#process">Process</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div style="display:flex; gap:10px; align-items:center">
+        <a class="btn ghost" href="#pricing">View packages</a>
+        <a class="btn primary" href="#contact">Get a quote</a>
+        <button class="menu" id="menuBtn" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" style="display:none; border-top:1px solid var(--stroke);">
+      <div class="container" style="padding:12px 18px 16px; display:grid; gap:10px">
+        <a class="btn" href="#features">Features</a>
+        <a class="btn" href="#process">Process</a>
+        <a class="btn" href="#pricing">Pricing</a>
+        <a class="btn" href="#faq">FAQ</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <section class="hero">
+      <div class="grid-hero">
+        <div class="reveal">
+          <span class="kicker"><span class="dot"></span> Landing pages that convert — fast & modern</span>
+          <h1>High-Converting Landing Page for your business</h1>
+          <p class="sub">
+            This is a portfolio demo landing. Clean UI, responsive layout, smooth animations, and a conversion-focused structure.
+            Replace text + colors and you’re ready to ship.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn primary" href="#contact">Start a project</a>
+            <a class="btn" href="#features">See features</a>
+          </div>
+
+          <div class="trust">
+            <span class="pill">⚡ Fast loading</span>
+            <span class="pill">📱 100% responsive</span>
+            <span class="pill">🎯 Conversion-first</span>
+            <span class="pill">🧩 Clean code</span>
+          </div>
+        </div>
+
+        <div class="mock reveal" aria-label="Product preview mockup">
+          <div class="mock-inner">
+            <div class="windowbar" aria-hidden="true">
+              <span class="w red"></span><span class="w yellow"></span><span class="w green"></span>
+            </div>
+            <div class="preview">
+              <div class="preview-top">
+                <strong>Demo Dashboard</strong>
+                <span class="badge">AI-ready</span>
+              </div>
+              <div class="preview-body">
+                <div class="line w85"></div>
+                <div class="line w60"></div>
+                <div class="line w40"></div>
+                <div class="cards">
+                  <div class="mini">
+                    <b>+42% leads</b>
+                    <p>Conversion-focused sections and clear CTA blocks.</p>
+                  </div>
+                  <div class="mini">
+                    <b>0.8s load</b>
+                    <p>Optimized layout and lightweight effects.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p style="margin:12px 0 0; color:var(--muted); font-size:13px; line-height:1.6">
+              Tip: Replace this mockup with your own screenshots for stronger portfolio impact.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="section-title reveal">
+        <h2>What makes this landing “high-converting”</h2>
+        <p>Clear value proposition, short blocks, proof, pricing, and CTA repetition — the core structure clients expect.</p>
+      </div>
+
+      <div class="grid3">
+        <div class="card reveal">
+          <div class="icon">⚡</div>
+          <h3>Fast & optimized</h3>
+          <p>Lightweight layout, neat CSS, minimal JS — quick load and smooth interactions.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon">📱</div>
+          <h3>Responsive UI</h3>
+          <p>Looks great on mobile, tablet, and desktop — no broken blocks or weird spacing.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon">🎯</div>
+          <h3>Conversion structure</h3>
+          <p>Hero → benefits → process → pricing → FAQ → form. Simple and effective.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="section-title reveal">
+        <h2>Process</h2>
+        <p>Perfect for showing clients how you work (in your portfolio demo).</p>
+      </div>
+
+      <div class="grid3">
+        <div class="card reveal">
+          <div class="icon">1</div>
+          <h3>Brief</h3>
+          <p>Goals, audience, references, content. Quick call or chat checklist.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon">2</div>
+          <h3>Design + build</h3>
+          <p>Modern UI, responsive layout, interactive components, animation polish.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon">3</div>
+          <h3>Launch</h3>
+          <p>Speed check, cross-browser test, deploy to hosting, final handoff.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="section-title reveal">
+        <h2>Packages</h2>
+        <p>Use realistic packages in portfolio to look “market ready”. Replace prices with your own.</p>
+      </div>
+
+      <div class="pricing">
+        <div class="card price reveal">
+          <h3>Starter</h3>
+          <div class="money">$99</div>
+          <p class="note">One-page landing, responsive, basic animations.</p>
+          <ul>
+            <li><span class="check">✓</span> Hero + benefits + CTA</li>
+            <li><span class="check">✓</span> Responsive layout</li>
+            <li><span class="check">✓</span> Basic form</li>
+            <li><span class="check">✓</span> Delivery: 2–3 days</li>
+          </ul>
+          <div style="margin-top:14px">
+            <a class="btn primary" href="#contact">Choose Starter</a>
+          </div>
+        </div>
+
+        <div class="card price reveal" style="border-color: rgba(124,58,237,.35)">
+          <span class="tag">Most popular</span>
+          <h3>Business</h3>
+          <div class="money">$199</div>
+          <p class="note">More sections, stronger design, better conversion blocks.</p>
+          <ul>
+            <li><span class="check">✓</span> Full structure + FAQ</li>
+            <li><span class="check">✓</span> Smooth animations</li>
+            <li><span class="check">✓</span> Speed optimization</li>
+            <li><span class="check">✓</span> Delivery: 3–5 days</li>
+          </ul>
+          <div style="margin-top:14px">
+            <a class="btn primary" href="#contact">Choose Business</a>
+          </div>
+        </div>
+
+        <div class="card price reveal">
+          <h3>Premium</h3>
+          <div class="money">$349</div>
+          <p class="note">Custom design, advanced interactions, deployment included.</p>
+          <ul>
+            <li><span class="check">✓</span> Custom UI / AI design</li>
+            <li><span class="check">✓</span> Advanced form UX</li>
+            <li><span class="check">✓</span> Hosting deployment</li>
+            <li><span class="check">✓</span> Delivery: 5–7 days</li>
+          </ul>
+          <div style="margin-top:14px">
+            <a class="btn primary" href="#contact">Choose Premium</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="section-title reveal">
+        <h2>FAQ</h2>
+        <p>FAQ повышает доверие и снимает возражения — обязательно добавляй в реальные проекты.</p>
+      </div>
+
+      <div class="faq">
+        <details class="reveal">
+          <summary>Can you adapt this landing to my niche?</summary>
+          <p>Yes. Replace text, add your blocks, change colors, and insert your screenshots/examples.</p>
+        </details>
+        <details class="reveal">
+          <summary>Will it work on mobile?</summary>
+          <p>Yes. The layout is fully responsive and includes a mobile menu.</p>
+        </details>
+        <details class="reveal">
+          <summary>Can you integrate a real form submission?</summary>
+          <p>Yes. You can connect it to Formspree, Netlify Forms, a backend API, or Telegram bot.</p>
+        </details>
+        <details class="reveal">
+          <summary>Can I use this in my portfolio?</summary>
+          <p>Absolutely — it’s designed as a portfolio-ready example. Just customize branding.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-title reveal">
+        <h2>Contact</h2>
+        <p>В портфолио можешь указать “Contact form (demo)”. В реальном проекте — подключишь отправку.</p>
+      </div>
+
+      <div class="contact">
+        <div class="card reveal">
+          <form id="leadForm">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" placeholder="John Doe" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="john@mail.com" required />
+            </div>
+            <div class="field">
+              <label for="msg">Project details</label>
+              <textarea id="msg" name="msg" placeholder="What do you need? Timeline? Examples?" required></textarea>
+            </div>
+            <button class="btn primary" type="submit">Send message</button>
+            <p class="note" id="formNote" style="margin:0"></p>
+          </form>
+        </div>
+
+        <div class="card reveal">
+          <h3 style="margin-top:0">Quick info</h3>
+          <p class="note">
+            ✅ Delivery: 2–7 days<br/>
+            ✅ Responsive + speed optimized<br/>
+            ✅ Clean code + animations<br/>
+            ✅ Deploy to hosting (optional)
+          </p>
+
+          <div style="margin-top:14px; display:grid; gap:10px">
+            <a class="btn" href="#pricing">See packages</a>
+            <a class="btn" href="#features">Why this works</a>
+          </div>
+
+          <p class="note" style="margin-top:14px">
+            Portfolio tip: add 2–3 versions (SaaS, Restaurant, Crypto) — and you’ll look like a specialist.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container foot">
+        <div>© <span id="year"></span> Nexora. Portfolio landing demo.</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a href="#top">Back to top</a>
+          <span style="opacity:.5">•</span>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Mobile menu
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    btn?.addEventListener('click', () => {
+      const open = menu.style.display === 'block';
+      menu.style.display = open ? 'none' : 'block';
+      btn.textContent = open ? '☰' : '✕';
+    });
+
+    // Reveal on scroll
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting) e.target.classList.add('show');
+      });
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Demo form
+    const form = document.getElementById('leadForm');
+    const note = document.getElementById('formNote');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      note.textContent = "✅ Demo: message captured (connect to backend/Formspree for real submissions).";
+      note.style.color = "rgba(220,252,231,.95)";
+      form.reset();
+    });
+  </script>
+</body>
+</html>
